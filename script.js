@@ -1,4 +1,4 @@
-/* TODO: Use an html table to display our information (practice html tables)
+/*
  * TODO: Everytime a user adds a book, it should immediately write to a json file.
  * */
 
@@ -9,26 +9,29 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function () {
-    const readStatus = read ? "already read" : "not read yet";
-    return `${this.title} by ${this.author}, ${this.pages}, ${readStatus}`;
-  };
+  // this.info = function () {
+  //   const readStatus = read ? "already read" : "not read yet";
+  //   return `${this.title} by ${this.author}, ${this.pages}, ${readStatus}`;
+  // };
 }
 
-function addBookToLibrary(book) {
+var foo = 5;
+
+function addBookToLibrary() {
+  const title = prompt("What's the book's title?");
+  const author = prompt("Who is the author?");
+  const pages = prompt("How many pages does it have?");
+  const read = prompt("Have you already read it?");
+
+  const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
+addBookToLibrary();
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295 pages", false);
-const theGreatGatsby = new Book(
-  "The Great Gatsby",
-  "F. Scott Fitzgerald",
-  "242 pages",
-  false,
+myLibrary.push(new Book("The Hobbit", "J.R.R. Tolkien", "295 pages", false));
+myLibrary.push(
+  new Book("The Great Gatsby", "F. Scott Fitzgerald", "242 pages", false),
 );
-
-addBookToLibrary(theHobbit);
-addBookToLibrary(theGreatGatsby);
 
 const headerNames = ["title", "author", "pages", "read"];
 const tbody = document.getElementById("tbody");
