@@ -1,0 +1,38 @@
+<!-- Link to this project: https://www.theodinproject.com/lessons/javascript-library -->
+<!-- 
+  Recall:
+  <th>Table Headers</th>
+  <tr>Table Row</tr> 
+  <td>Table Data (~cells)</td>
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- TODO: Display ONE existing book in our newly created table. -->
+    <table>
+      <caption>
+        bookLibrary is an app to keep track of your books.
+      </caption>
+      <colgroup>
+        <col span="2" />
+        <col style="2" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col"># Pages</th>
+          <th scope="col">Read?</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </body>
+</html>
