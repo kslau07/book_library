@@ -2,13 +2,49 @@ body {
   background-color: cornsilk;
 }
 
+table {
+  margin-bottom: 1rem;
+}
+
 table,
 td {
   border: 1px solid #333;
+}
+
+caption {
+  padding-bottom: 1rem;
+}
+
+th,
+td {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 }
 
 thead,
 tfoot {
   background-color: #333;
   color: #fff;
+}
+
+::backdrop {
+  background-image: linear-gradient(45deg, skyblue, blue, dodgerblue, navy);
+  opacity: 0.75;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  padding-bottom: 1rem;
+}
+
+.read {
+  background-color: palegreen;
+}
+
+.unread {
+  background-color: orange;
 }

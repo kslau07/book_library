@@ -1,15 +1,3 @@
-<!-- Link to project specs: https://www.theodinproject.com/lessons/javascript-library -->
-<!-- 
-  Recall:
-  <table>Table Element</table>
-  <caption>Summary of our table</caption>
-  <colgroup>Add style to specific columns</colgroup>
-  <thead>Headers of Table</thead>
-  <tbody>Body of Table</tbody>
-  <th>Table Headers</th>
-  <tr>Table Row</tr> 
-  <td>Table Data (~cells)</td>
--->
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>myLibrary</title>
     <script src="script.js" defer></script>
+    <script src="dialog.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- TODO: Display ONE existing book in our newly created table. -->
     <table>
       <caption>
-        book_library is an app to keep track of your books.
+        "The myLibrary app helps you keep track of your books."
       </caption>
       <colgroup>
         <col span="2" />
@@ -35,9 +23,46 @@
           <th scope="col">Author</th>
           <th scope="col"># Pages</th>
           <th scope="col">Read?</th>
+          <th scope="col">Remove Book</th>
+          <th scope="col">Info</th>
+          <th scope="col">Mark Read</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
+    <div>
+      <dialog id="show-info-dialog">
+        <div id="book-info"></div>
+        <button id="show-info-close-btn" autofocus type="button">Close</button>
+      </dialog>
+    </div>
+    <div>
+      <dialog id="add-book-dialog">
+        <p>Add New Book</p>
+        <form action="" id="form">
+          <ul>
+            <li>
+              <label for="title">Title</label><br />
+              <input type="text" id="title" name="title" />
+            </li>
+            <li>
+              <label for="author">Author</label><br />
+              <input type="text" id="author" name="author" />
+            </li>
+            <li>
+              <label for="pages"># Pages</label><br />
+              <input type="text" id="pages" name="pages" />
+            </li>
+            <li>
+              <label for="read">Read?</label><br />
+              <input type="text" id="read" name="read" />
+            </li>
+          </ul>
+          <input type="submit" value="Submit" id="btn-submit" />
+          <button id="close-btn" autofocus type="button">Close</button>
+        </form>
+      </dialog>
+      <button id="add-btn">Add New Book</button>
+    </div>
   </body>
 </html>
