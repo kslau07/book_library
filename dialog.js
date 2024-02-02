@@ -16,7 +16,7 @@ form.addEventListener("submit", (e) => {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
-  const read = document.getElementById("read").value;
+  const read = document.getElementById("read").value == "on" ? true : false;
 
   if (title == "" || author == "" || pages == "" || read == "")
     return alert("Some items were left blank.");
@@ -26,4 +26,3 @@ form.addEventListener("submit", (e) => {
   addBookDialog.close();
   showBooks();
 });
-

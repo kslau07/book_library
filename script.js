@@ -8,7 +8,6 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.showInfo = function () {
-
   const status = this.read ? "Already read." : "Not read yet.";
   const bookInfo = document.getElementById("book-info");
   const showInfoDialog = document.getElementById("show-info-dialog");
@@ -77,10 +76,8 @@ const showBooks = function () {
       const td = document.createElement("td");
       td.textContent = book[headerName];
       if (headerName == "read" && book[headerName] == true) {
-        // console.log("true");
         td.setAttribute("class", "read");
       } else if (headerName == "read" && book[headerName] == false) {
-        // console.log("false");
         td.setAttribute("class", "unread");
       }
       tr.appendChild(td);

@@ -30,6 +30,7 @@
       </thead>
       <tbody id="tbody"></tbody>
     </table>
+    <button id="add-btn" style="margin-left: 0.25rem">Add New Book</button>
     <div>
       <dialog id="show-info-dialog">
         <div id="book-info"></div>
@@ -54,15 +55,14 @@
               <input type="text" id="pages" name="pages" />
             </li>
             <li>
-              <label for="read">Read?</label><br />
-              <input type="text" id="read" name="read" />
+              <input type="checkbox" id="read" name="read" />
+              <label for="read">Check if already read</label>
             </li>
           </ul>
           <input type="submit" value="Submit" id="btn-submit" />
           <button id="close-btn" autofocus type="button">Close</button>
         </form>
       </dialog>
-      <button id="add-btn">Add New Book</button>
     </div>
   </body>
 </html>
