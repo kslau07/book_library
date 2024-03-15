@@ -1,5 +1,5 @@
 const addBookDialog = document.getElementById("add-book-dialog");
-const addButton = document.getElementById("add-btn");
+const addButton = document.getElementById("add-book-btn");
 const closeButton = document.getElementById("close-btn");
 const form = document.getElementById("form");
 
