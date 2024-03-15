@@ -113,6 +113,7 @@ const showBooks = function () {
 
     index++;
   }
+
   configureRemoveButtons();
   configureShowInfoButtons();
   configureReadButtons();
