@@ -10,11 +10,11 @@
 
 class Reading {
   #read; // Make all data private
-  #medium;
+  #bookcover;
 
-  constructor(read, medium) {
+  constructor(read, bookcover) {
     this.#read = read;
-    this.#medium = medium;
+    this.#bookcover = bookcover;
   }
 
   get read() {
@@ -29,8 +29,8 @@ class Reading {
     this.#read = this.#read == true ? false : true;
   }
 
-  get medium() {
-    return this.#medium;
+  get bookcover() {
+    return this.#bookcover;
   }
 }
 
@@ -41,8 +41,9 @@ class Book extends Reading  {
 
   static myLibrary = [];
 
-  constructor(title, author, pages, read, medium) {
-    super(read, medium);
+  constructor(title, author, pages, read, bookcover) {
+    super(read, bookcover);
+    this.#title = title;
     this.#author = author;
     this.#pages = pages;
   }
@@ -82,17 +83,63 @@ function appendChildElement(type, content) {
 }
 // Above: We should create something like `class TableItem`
 
+class BookElement {
+  static {
+    this.prototype.table = document.getElementById("tbody")
+  }
+
+  constructor(book) {
+    const tr = this.addRow()
+    const td = document.createElement("td")
+    tr.appendChild(td)
+    td.textContent = book.title
+  }
+
+  addRow() {
+    const table = Object.getPrototypeOf(this).table
+    const tr = document.createElement("tr")
+    table.appendChild(tr)
+    return tr
+  }
+}
+
 const showBooks = function() {
   const tbody = document.getElementById("tbody");
   tbody.innerHTML = "";
+
+  for (const book of Book.myLibrary) {
+    new BookElement(book)
+  }
 }
 
-const tbody = document.getElementById("tbody")
-const tr = document.createElement("tr")
-tbody.appendChild(tr)
-const td = document.createElement("td")
-tr.appendChild(td)
-td.textContent = "foo"
+// const tbody = document.getElementById("tbody")
+// const tr = document.createElement("tr")
+// tbody.appendChild(tr)
+// const td = document.createElement("td")
+// tr.appendChild(td)
+// td.textContent = "foo"
+
+const configureAddBookBtn = (function(){
+  const addBookBtn = document.getElementById("add-book-btn")
+  addBookBtn.addEventListener("click", () => {
+    const addBookDialog = document.getElementById("add-book-dialog");
+    addBookDialog.showModal(); // Builtin method that reveals modal
+  })
+})()
+
+const configureForm = (function(){
+  const form = document.getElementById("form")
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const read = document.getElementById("read").value;
+    const bookcover = document.getElementById("bookcover").value;
+  }) 
+})()
+
+showBooks()
 
 // On page load, invoke showBooks()
 // User clicks add book
@@ -100,3 +147,12 @@ td.textContent = "foo"
 // User fills out book info
 // User clicks "Add Book" button
 // Invoke showBooks()
+
+// From lesson:
+// function SuperElement(type, content) {
+//   this.el = document.createElement(type)
+//   this.el.innerText = content
+//   document.body.append(el)
+//   this.el.addEventListener('click', () => {
+//     console.log("super element clicked")
+//   })
