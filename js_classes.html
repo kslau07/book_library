@@ -51,11 +51,15 @@
               <label for="read">Check if already read</label>
             </li>
             <li>
-              <label for="bookcover">Bookcover Type</label>
-              <input type="text" id="bookcover" name="bookcover">
+              <select name="bookcover" id="bookcover">
+                <option value="hardcover">Hardcover</option>
+                <option value="paperback" selected>Paperback</option>
+              </select>
+              <label for="bookcover">Cover Type</label>
             </li>
           </ul>
           <input type="submit" id="btn-submit" />
+          <button id="form-close-btn" autofocus type="button">Close</button>
         </form>
       </dialog>
     </div>

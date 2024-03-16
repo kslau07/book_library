@@ -66,23 +66,6 @@ const book2 = new Book('Fahrenheit 451', 'Ray Bradbury', 236, true, 'hardcover')
 const book3 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 242, 'paperback');
 Book.myLibrary.push(book1, book2, book3)
 
-const button = (function() {
-  // We can use an IIFE to populate some DOM elements
-})()
-
-// TODO: Get this constructor function working. THEN: convert it to a class
-// Create a button for each book to "remove" book
-function appendChildElement(type, content) {
-  this.tbody = document.getElementById("tbody");
-  // this.el = document.createElement(type)
-  // this.el.innerText = content
-  // document.body.append(el)
-  // this.el.addEventListener('click', () => {
-    // console.log("super element clicked")
-  // })
-}
-// Above: We should create something like `class TableItem`
-
 class BookElement {
   static {
     this.prototype.table = document.getElementById("tbody")
@@ -112,47 +95,34 @@ const showBooks = function() {
   }
 }
 
-// const tbody = document.getElementById("tbody")
-// const tr = document.createElement("tr")
-// tbody.appendChild(tr)
-// const td = document.createElement("td")
-// tr.appendChild(td)
-// td.textContent = "foo"
-
 const configureAddBookBtn = (function(){
-  const addBookBtn = document.getElementById("add-book-btn")
-  addBookBtn.addEventListener("click", () => {
-    const addBookDialog = document.getElementById("add-book-dialog");
-    addBookDialog.showModal(); // Builtin method that reveals modal
-  })
 })()
 
 const configureForm = (function(){
+  const addBookDialog = document.getElementById("add-book-dialog");
+  
+  const addBookBtn = document.getElementById("add-book-btn")
+  addBookBtn.addEventListener("click", () => {
+    addBookDialog.showModal(); // Builtin method that reveals modal
+  })
+
   const form = document.getElementById("form")
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
-    const read = document.getElementById("read").value;
+    const read = document.getElementById("read").value == "on" ? true : false;
     const bookcover = document.getElementById("bookcover").value;
+
+    const newBook = new Book(title, author, pages, read, bookcover);
+    Book.myLibrary.push(newBook);
+    showBooks();
   }) 
+
+  const formCloseBtn = document.getElementById("form-close-btn")
+
+  formCloseBtn.addEventListener("click", () => addBookDialog.close())
 })()
 
 showBooks()
-
-// On page load, invoke showBooks()
-// User clicks add book
-// A modal dialog appears
-// User fills out book info
-// User clicks "Add Book" button
-// Invoke showBooks()
-
-// From lesson:
-// function SuperElement(type, content) {
-//   this.el = document.createElement(type)
-//   this.el.innerText = content
-//   document.body.append(el)
-//   this.el.addEventListener('click', () => {
-//     console.log("super element clicked")
-//   })
