@@ -49,3 +49,6 @@ li {
   background-color: orange;
 }
 
+button {
+  cursor: pointer;
+}

@@ -1,68 +1,77 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>myLibrary</title>
-    <script src="script_old.js" defer></script>
-    <script src="dialog.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <table>
-      <caption>
-        "The myLibrary app helps you keep track of your books."
-      </caption>
-      <colgroup>
-        <col span="10" />
-        <col style="10" />
-      </colgroup>
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Author</th>
-          <th scope="col"># Pages</th>
-          <th scope="col">Read?</th>
-          <th scope="col">Remove Book</th>
-          <th scope="col">Info</th>
-          <th scope="col">Mark Read</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <button id="add-book-btn" style="margin-left: 0.25rem">Add New Book</button>
-    <div>
-      <dialog id="show-info-dialog">
-        <div id="book-info"></div>
-        <button id="show-info-close-btn" autofocus type="button">Close</button>
-      </dialog>
-    </div>
-    <div>
-      <dialog id="add-book-dialog">
-        <p>Add New Book</p>
-        <form action="" id="form">
-          <ul>
-            <li>
-              <label for="title">Title</label><br />
-              <input type="text" id="title" name="title" />
-            </li>
-            <li>
-              <label for="author">Author</label><br />
-              <input type="text" id="author" name="author" />
-            </li>
-            <li>
-              <label for="pages"># Pages</label><br />
-              <input type="text" id="pages" name="pages" />
-            </li>
-            <li>
-              <input type="checkbox" id="read" name="read" />
-              <label for="read">Check if already read</label>
-            </li>
-          </ul>
-          <input type="submit" value="Submit" id="btn-submit" />
-          <button id="close-btn" autofocus type="button">Close</button>
-        </form>
-      </dialog>
-    </div>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>myLibrary</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <table>
+    <caption>
+      "The myLibrary app helps you keep track of your books."
+    </caption>
+    <colgroup>
+      <col style="background-color: blanchedalmond;">
+      <col span="1">
+    </colgroup>
+    <thead>
+      <tr>
+        <!-- Title,	Author,	# Pages, Read?, Remove, Book,	Info,	Mark, Read -->
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col"># Pages</th>
+        <th scope="col">Read?</th>
+        <th scope="col">Cover Type</th>
+        <th scope="col">Remove</th>
+        <th scope="col">Info</th>
+        <th scope="col">Mark Read</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <button id="add-book-btn">
+    Add New Book
+  </button>
+  <div>
+  </div>
+  <div>
+    <dialog id="add-book-dialog">
+      <p>Add New Book</p>
+      <form action="" id="form">
+        <ul>
+          <li
+            <label for="title">Title</label><br />
+            <input type="text" id="title" name="title" />
+          </li>
+          <li>
+            <label for="author">Author</label><br />
+            <input type="text" id="author" name="author">
+          </li>
+          <li>
+            <label for="pages"># of pages</label><br />
+            <input type="text" id="pages" name="pages" />
+          </li>
+          <li>
+            <input type="checkbox" id="read" name="read" />
+            <label for="read">Check if already read</label>
+          </li>
+          <li>
+            <select name="bookcover" id="bookcover">
+              <option value="hardcover">Hardcover</option>
+              <option value="paperback" selected>Paperback</option>
+            </select>
+            <label for="bookcover">Cover Type</label>
+          </li>
+        </ul>
+        <input type="submit" id="btn-submit" />
+        <button id="form-close-btn" autofocus type="button">Close</button>
+      </form>
+    </dialog>
+  </div>
+</body>
+
 </html>
