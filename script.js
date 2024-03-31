@@ -60,7 +60,8 @@ class Book extends Reading {
 
   setBookId() {
     const string = this.#author + this.#title // Use author + title to create a unique string / id
-    this.#bookId = btoa(string) // Use base64 encoding to make it look a bit better in the markup
+    this.#bookId = string.replace(/\s/g, '');
+    // this.#bookId = btoa(string) // Use base64 encoding to make it look a bit better in the markup
   }
 }
 
@@ -90,8 +91,19 @@ const configureRemoveButtons = function () {
   for (const button of removeButtons) {
     button.addEventListener("click", () => {
       const bookId = button.getAttribute("data-bookid");
-      Book.myLibrary.splice(bookId, 1);
-      showBooks();
+      const booksArray = Book.myLibrary
+      for (let i = 0; i < booksArray.length; i++ ) {
+        if (booksArray[i].bookId == bookId) {
+          booksArray.splice(i, 1)
+          showBooks();
+          break;
+        }
+      }
+      // for (const book of Book.myLibrary) {
+      //   console.log(book.bookId == bookId)
+      // }
+      // console.log(bookId)
+      // Book.myLibrary.splice(bookId, 1);
     });
   }
 };
