@@ -59,9 +59,8 @@ class Book extends Reading {
   }
 
   setBookId() {
-    const string = this.#author + this.#title // Use author + title to create a unique string / id
-    this.#bookId = string.replace(/\s/g, '');
-    // this.#bookId = btoa(string) // Use base64 encoding to make it look a bit better in the markup
+    const string = (this.#author + this.#title).replace(/\s/g, ""); // Use author + title to create a unique string / id
+    this.#bookId = btoa(string); // Use base64 encoding to make it look a bit better in the markup
   }
 }
 
@@ -91,25 +90,75 @@ const configureRemoveButtons = function () {
   for (const button of removeButtons) {
     button.addEventListener("click", () => {
       const bookId = button.getAttribute("data-bookid");
-      const booksArray = Book.myLibrary
-      for (let i = 0; i < booksArray.length; i++ ) {
+      const booksArray = Book.myLibrary;
+      for (let i = 0; i < booksArray.length; i++) {
         if (booksArray[i].bookId == bookId) {
-          booksArray.splice(i, 1)
+          booksArray.splice(i, 1);
           showBooks();
           break;
         }
       }
-      // for (const book of Book.myLibrary) {
-      //   console.log(book.bookId == bookId)
-      // }
-      // console.log(bookId)
-      // Book.myLibrary.splice(bookId, 1);
     });
+  }
+};
+
+const configureMarkButtons = function () {
+  const markButtons = document.getElementsByClassName("mark-button");
+  for (const button of markButtons) {
+    button.addEventListener("click", () => {
+      const bookId = button.getAttribute("data-bookid");
+      const booksArray = Book.myLibrary;
+      for (let i = 0; i < booksArray.length; i++) {
+        if (booksArray[i].bookId == bookId) {
+          booksArray[i].toggleRead();
+          showBooks();
+          break;
+        }
+      }
+    });
+  }
+};
+
+const configureShowButtons = function () {
+  const showButtons = document.getElementsByClassName("show-button");
+  const showInfoDialog = document.getElementById("show-info-dialog");
+  const closeShowButton = document.getElementById("show-info-close-btn");
+  closeShowButton.addEventListener("click", () => showInfoDialog.close());
+
+  for (const button of showButtons) {
+    button.addEventListener("click", () => {
+      const bookId = button.getAttribute("data-bookid");
+      const booksArray = Book.myLibrary;
+      for (let i = 0; i < booksArray.length; i++) {
+        if (booksArray[i].bookId == bookId) {
+          const bookInfo = document.getElementById("book-info");
+          const readStatus = booksArray[i].read == true ? "Read" : "Unread";
+          bookInfo.textContent = `${booksArray[i].title} by ${booksArray[i].author}, ${booksArray[i].pages} pages. ${readStatus}.`;
+          showInfoDialog.showModal();
+          break;
+        }
+      }
+    });
+  }
+};
+
+const configureRead = function () {
+  const readTds = document.getElementsByClassName("read");
+  for (const readTd of readTds) {
+    if (readTd.textContent == "true") {
+      readTd.classList.add("alreadyRead");
+      readTd.classList.remove("unread");
+    } else {
+      readTd.classList.add("unread");
+      readTd.classList.remove("alreadyRead");
+    }
   }
 };
 
 const configureButtons = function () {
   configureRemoveButtons();
+  configureMarkButtons();
+  configureShowButtons();
 };
 
 class BookElement {
@@ -122,7 +171,7 @@ class BookElement {
 
     const bookInfo = ["title", "author", "pages", "read", "bookcover"];
     for (const item of bookInfo) {
-      this.addData(tr, book[item]);
+      this.addData(tr, book[item], item);
     }
     this.addButton(tr, "Remove", book);
     this.addButton(tr, "Show", book);
@@ -136,20 +185,21 @@ class BookElement {
     return tr;
   }
 
-  addData(tr, data) {
+  addData(tr, data, item) {
     const td = document.createElement("td");
     tr.appendChild(td);
     td.textContent = data;
+    td.className = item;
   }
 
-  addButton(tr, name, book) {
+  addButton(tr, btnName, book) {
     const td = document.createElement("td");
     tr.appendChild(td);
     const btn = document.createElement("button");
     td.appendChild(btn);
-    btn.textContent = name;
+    btn.textContent = btnName;
     btn.setAttribute(`data-bookid`, book.bookId);
-    btn.className = `${name.toLowerCase()}-button`;
+    btn.className = `${btnName.toLowerCase()}-button`;
   }
 }
 
@@ -162,6 +212,7 @@ const showBooks = function () {
   }
 
   configureButtons();
+  configureRead();
 };
 
 const configureAddBookBtn = (function () {})();
@@ -184,8 +235,13 @@ const configureForm = (function () {
     const read = document.getElementById("read").value == "on" ? true : false;
     const bookcover = document.getElementById("bookcover").value;
 
+    if (title == "" || author == "" || pages == "")
+      return alert("Some items were left blank.");
+
     const newBook = new Book(title, author, pages, read, bookcover);
     Book.myLibrary.push(newBook);
+    form.reset();
+    addBookDialog.close();
     showBooks();
   });
 
@@ -194,4 +250,3 @@ const configureForm = (function () {
 })();
 
 showBooks();
-
