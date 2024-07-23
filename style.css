@@ -52,3 +52,19 @@ li {
 button {
   cursor: pointer;
 }
+
+/* Form validations */
+input:valid {
+  background: palegreen;
+  border: 2px solid lime;
+  /* NOTE: outline used for tabbing  */
+}
+
+input:invalid:required {
+  background: pink;
+  border: 2px dashed orangered;
+}
+
+input:focus:invalid:required {
+  background: none;
+}

@@ -249,4 +249,10 @@ const configureForm = (function () {
   formCloseBtn.addEventListener("click", () => addBookDialog.close());
 })();
 
+// Form validations
+const form = document.getElementById("form");
+const title = document.getElementById("title");
+
+// TODO: load, input, submit
+
 showBooks();

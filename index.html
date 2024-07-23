@@ -1,5 +1,3 @@
-<!-- test commit -->
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,15 +41,24 @@
           <ul>
             <li>
               <label for="title">Title</label><br />
-              <input type="text" id="title" name="title" />
+              <input type="text" id="title" name="title"  required minlength="1" maxlength="100"/>
             </li>
             <li>
               <label for="author">Author</label><br />
-              <input type="text" id="author" name="author" />
+              <input type="text" id="author" name="author" required minlength="1" maxlength="100" />
             </li>
             <li>
               <label for="pages"># of pages</label><br />
-              <input type="text" id="pages" name="pages" />
+              <input
+                type="number"
+                id="pages"
+                name="pages"
+                required
+                min="1"
+                max="100000"
+                step="1"
+                pattern="\d+"
+              />
             </li>
             <li>
               <input type="checkbox" id="read" name="read" />
@@ -65,7 +72,7 @@
               <label for="bookcover">Cover Type</label>
             </li>
           </ul>
-          <input type="submit" id="btn-submit" />
+          <button type="submit" id="btn-submit" />Submit</button>
           <button id="form-close-btn" autofocus type="button">Close</button>
         </form>
       </dialog>
