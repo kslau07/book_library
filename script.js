@@ -235,9 +235,6 @@ const configureForm = (function () {
     const read = document.getElementById("read").value == "on" ? true : false;
     const bookcover = document.getElementById("bookcover").value;
 
-    if (title == "" || author == "" || pages == "")
-      return alert("Some items were left blank.");
-
     const newBook = new Book(title, author, pages, read, bookcover);
     Book.myLibrary.push(newBook);
     form.reset();
@@ -250,9 +247,33 @@ const configureForm = (function () {
 })();
 
 // Form validations
+// const constraints = {
+// title: [],
+// author: [],
+// pages: { errorMessage: "Please enter letters and numbers only." },
+// };
 const form = document.getElementById("form");
-const title = document.getElementById("title");
 
+const author = document.getElementById("author");
+author.addEventListener("input", (event) => {
+  if (author.validity.patternMismatch) {
+    author.setCustomValidity("Please enter letters and numbers only.");
+  } else {
+    author.setCustomValidity("");
+  }
+});
+
+const pages = document.getElementById("pages");
+pages.addEventListener("input", (event) => {
+  if (pages.validity.rangeUnderflow) {
+    pages.setCustomValidity("Please enter the number of pages this book has.");
+  } else {
+    pages.setCustomValidity("");
+  }
+});
+
+const errorSpans = document.querySelectorAll(".error");
+console.log(errorSpans);
 // TODO: load, input, submit
 
 showBooks();

@@ -37,15 +37,16 @@
     <div>
       <dialog id="add-book-dialog">
         <p>Add New Book</p>
-        <form action="" id="form">
+        <form action="" id="form" novalidate>
           <ul>
             <li>
               <label for="title">Title</label><br />
-              <input type="text" id="title" name="title"  required minlength="1" maxlength="100"/>
+              <input type="text" id="title" name="title" minlength="1" maxlength="100"/>              <span class="error"></span>
             </li>
             <li>
               <label for="author">Author</label><br />
-              <input type="text" id="author" name="author" required minlength="1" maxlength="100" />
+              <input type="text" id="author" name="author" minlength="1" maxlength="100" pattern="\w+" />
+                            <span class="error"></span>
             </li>
             <li>
               <label for="pages"># of pages</label><br />
@@ -58,7 +59,8 @@
                 max="100000"
                 step="1"
                 pattern="\d+"
-              />
+                />
+              <span class="error"></span>
             </li>
             <li>
               <input type="checkbox" id="read" name="read" />
